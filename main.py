@@ -7,7 +7,7 @@ import json
 from pynput import keyboard as listen
 #check python version, yell at user if not <= 3.4
 if sys.version_info[0] < 3 or sys.version_info[1] < 4:
-    raise Exception("Must be using Python Version <= 3.4, please update at https://www.python.org/downloads/ OR run 'python3 main.py' instead.")
+    raise Exception("Must be using Python Version <= 3.4, please update at https://www.python.org/downloads/ OR run 'py -3 main.py' instead.")
 pause = False
 config = json.load(open("config.json", "r"))
 def on_press(key):
