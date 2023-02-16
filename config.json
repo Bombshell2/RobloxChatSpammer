@@ -1,0 +1,6 @@
+{
+    "defaultfile" : "chair.txt",
+    "startdelay" : 7.5,
+    "messagelength": 200,
+    "pausekey" : "|"
+}
