@@ -7,7 +7,7 @@ import json
 from pynput import keyboard as listen
 #check python version, yell at user if not <= 3.4
 if sys.version_info[0] < 3 or sys.version_info[1] < 4:
-    raise Exception("Must be using Python Version <= 3.4, please update at https://www.python.org/downloads/ OR run 'py -3 main.py' instead.")
+    raise Exception("Must be using Python Version <= 3.4, please update at https://www.python.org/downloads/ OR run 'python3 main.py' instead.")
 pause = False
 config = json.load(open("config.json", "r"))
 def on_press(key):
@@ -37,10 +37,19 @@ cut = wrap(text, config["messagelength"])
 listener = listen.Listener(
     on_press=on_press)
 listener.start()
+length = (((len(cut) * config['messagelength']) * .1) / 2.67) + (len(cut) * config['messagedelay'])
+unit = "Seconds"
+units = ["Minutes", "Hours"]
+unitc = -1
+while length >= 60:
+    length = length / 60
+    unitc += 1
+    unit = units[unitc]
+print(round(length, 2), unit)
 print(len(cut), "Messages")
 time.sleep(config["startdelay"])
 for i in cut:
-    time.sleep(1)
+    time.sleep(config['messagedelay'])
     while pause:
         time.sleep(0.1)
     time.sleep(0.5)
